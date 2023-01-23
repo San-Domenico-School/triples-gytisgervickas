@@ -6,13 +6,40 @@
  */
 
 import greenfoot.*;
+import java.util.ArrayList;
 
 public class Deck 
 {
-    /****************************************************
-    ***   Leave as comment until ready to implement   ***
-    *****************************************************
-    // adds all the cards to the unshuffled deck.   
+    private Card[] unShuffledDeck;
+    private ArrayList<Card> shuffledDeck;
+
+    public int getNumCardsInDeck()
+    {
+        return shuffledDeck.size();
+    }
+    
+    public Card getTopCard()
+    {
+        return shuffledDeck.remove(0);
+    }
+    
+    public Card getShuffledCard(int index)
+    {
+        return shuffledDeck.get(index);
+    }
+    
+    public ArrayList<Card> getShuffledDeck()
+    {
+        return shuffledDeck;
+    }
+    
+    public int limitNumCardsInDeck(int numCards)
+    {
+        return numCards <= 27 ? 27 : 81;
+    }
+    
+    
+    
     private void populateUnshuffledDeckWithCards(int numOfCardsInDeck)        
     {
         unShuffledDeck[0] = new Card(Card.Shape.NO_SHAPE, Card.Color.NO_COLOR,0,0,
@@ -268,6 +295,4 @@ public class Deck
                 }
           }
     }
-    
-    **************  END OF COMMENT BLOCK  ***************/
 }

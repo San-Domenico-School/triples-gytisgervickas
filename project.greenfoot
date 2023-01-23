@@ -1,11 +1,14 @@
 #Greenfoot project file
 class.GameBoard.image=CardTable.jpg
-editor.fx.0.height=728
-editor.fx.0.width=800
-editor.fx.0.x=828
-editor.fx.0.y=287
+dependency1.from=Deck
+dependency1.to=Card
+dependency1.type=UsesDependency
+editor.fx.0.height=926
+editor.fx.0.width=1629
+editor.fx.0.x=60
+editor.fx.0.y=43
 height=823
-package.numDependencies=0
+package.numDependencies=1
 package.numTargets=6
 project.charset=UTF-8
 publish.hasSource=false
@@ -66,5 +69,5 @@ target6.y=0
 version=3.0.0
 width=797
 world.lastInstantiated=GameBoard
-xPosition=220
-yPosition=163
+xPosition=515
+yPosition=70

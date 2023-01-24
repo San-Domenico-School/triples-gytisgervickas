@@ -1,7 +1,7 @@
 /**
  * Write a description of class Deck here.
  * 
- * @author (your name) 
+ * @Gytis Gervickas 
  * @version (a version number or a date)
  */
 
@@ -12,7 +12,16 @@ public class Deck
 {
     private Card[] unShuffledDeck;
     private ArrayList<Card> shuffledDeck;
-
+    
+    Deck(int numOfCardsInDeck) 
+    {
+        numOfCardsInDeck = limitNumCardsInDeck(numOfCardsInDeck);
+        unShuffledDeck = new Card[numOfCardsInDeck + 1];
+        shuffledDeck = new ArrayList<>();
+        populateUnshuffledDeckWithCards(numOfCardsInDeck);
+        createShuffledDeck();
+    }
+    
     public int getNumCardsInDeck()
     {
         return shuffledDeck.size();
@@ -38,7 +47,13 @@ public class Deck
         return numCards <= 27 ? 27 : 81;
     }
     
-    
+    private void createShuffledDeck()
+    {
+        for(int i = 1; i < unShuffledDeck.length; i++)
+        {
+            shuffledDeck.add(unShuffledDeck[i]);
+        }
+    }
     
     private void populateUnshuffledDeckWithCards(int numOfCardsInDeck)        
     {

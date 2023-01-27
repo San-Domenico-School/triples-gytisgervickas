@@ -2,7 +2,7 @@
  * Write a description of class Deck here.
  * 
  * @Gytis Gervickas 
- * @version (a version number or a date)
+ * @Jan 27, updated version
  */
 
 import greenfoot.*;
@@ -58,7 +58,7 @@ public class Deck
     {
         for(int i = 1; i < unShuffledDeck.length; i++)
         {
-            shuffledDeck.add(unShuffledDeck[i]);
+            shuffledDeck.add((int)(Math.random() * shuffledDeck.size()),unShuffledDeck[i]);
         }
     }
     

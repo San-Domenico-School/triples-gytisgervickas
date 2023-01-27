@@ -30,9 +30,9 @@ public class Dealer extends Actor
     {
         for(int row = 0; row < 5; row++)
         {
-            for(col = 0; col < 3; col++)
+            for(int collumn = 0; collumn < 3; collumn++)
             {
-                getWorld().addObject(deck.topCard(), 80 + 120 * col, 80 + 80 * row);
+                getWorld().addObject(deck.getTopCard(),70 + collumn * 130, 50 + row * 80);
             }
         }
     }

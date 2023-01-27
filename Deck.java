@@ -42,9 +42,16 @@ public class Deck
         return shuffledDeck;
     }
     
-    public int limitNumCardsInDeck(int numCards)
+    public int limitNumCardsInDeck(int numCardsInDeck)
     {
-        return numCards <= 27 ? 27 : 81;
+        if(numCardsInDeck <= 27)
+        {
+            return 27;
+        }
+        else
+        {
+            return 81;
+        }
     }
     
     private void createShuffledDeck()

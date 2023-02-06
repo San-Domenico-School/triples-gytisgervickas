@@ -48,16 +48,62 @@ public class Dealer extends Actor
     
     public void checkIfEndGame()
     {
-        
+        if(triplesRemaining == 0)
+        {
+            Greenfoot.stop();
+        }
     }
     
     public void checkIfTriples(ArrayList<Card> cardsOnBoard, Card[] cardsSelected, ArrayList<Integer> selectedCardsIndex)
     {
+        int shapes = cardsSelected[0].getShape().ordinal() + 
+            cardsSelected[1].getShape().ordinal() + 
+            cardsSelected[2].getShape().ordinal();
         
+        int numberOfShapes = cardsSelected[0].getNumberOfShapes() + 
+            cardsSelected[1].getNumberOfShapes() + 
+            cardsSelected[2].getNumberOfShapes();
+        
+        int shading = cardsSelected[0].getShading() +
+            cardsSelected[1].getShading() +
+            cardsSelected[2].getShading();
+            
+        int colors = cardsSelected[0].getColor().ordinal() +
+            cardsSelected[1].getColor().ordinal() +
+            cardsSelected[2].getColor().ordinal();
+            
+        if(shapes % 3 == 0 && numberOfShapes % 3 == 0 && shading % 3 == 0 && colors % 3 == 0)
+        {
+            removeAndReplaceTriples(cardsOnBoard, cardsSelected, selectedCardsIndex);
+        }
     }
     
     public void removeAndReplaceTriples(ArrayList<Card> cardsOnBoard, Card[] cardsSelected, ArrayList<Integer> selectedCardsIndex)
     {
+        int [][] cardsXYCoordinates = new int[3][2];
+        for(int card = 0; card < 3; card++)
+        {
+            cardsXYCoordinates[card][0] = cardsSelected[card].getX();
+            cardsXYCoordinates[card][1] = cardsSelected[card].getY();
+        }
         
+        Animations.slideAndTurn(cardsSelected);
+        
+        for(int card = 0; card < 3; card++)
+        {
+            getWorld().removeObject(cardsSelected[card]);
+            if(deck.getNumCardsInDeck() > 0)
+            {
+                cardsOnBoard.set(selectedCardsIndex.get(card), deck.getTopCard());
+                getWorld().addObject(cardsOnBoard.get(selectedCardsIndex.get(card)), 
+                cardsXYCoordinates[card][0], cardsXYCoordinates[card][1]);
+            }
+        }
+        
+        //UI
+        triplesRemaining--;
+        Scorekeeper.updateScore();
+        setUI();
+        checkIfEndGame();
     }
 }
